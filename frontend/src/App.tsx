@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import NavBar from './components/NavBar'
 import AllEntries from './routes/AllEntries'
 import NewEntry from './routes/NewEntry'
@@ -7,15 +7,26 @@ import { EntryProvider } from './utilities/globalContext'
 import {
   BrowserRouter as Router,
   Routes,
-  Route
+  Route,
 } from "react-router-dom";
 
-export default function App() {
+function App() {
+  const [theme , setTheme] = useState("default");
+  function toggleTheme() {
+    if(theme=="default"){
+      setTheme("dark")
+    } else setTheme("default")
+  }
+
+  useEffect(() => {
+    document.documentElement.setAttribute("theme", theme);
+  }, [theme])
+
   return (
-    <section>
+    <section className="bg-bg h-screen">
   <Router>
     <EntryProvider>
-    <NavBar></NavBar>
+    <NavBar theme={theme} setTheme={toggleTheme}></NavBar>
       <Routes>
         <Route path="/" element={<AllEntries/>}>
         </Route>
@@ -30,3 +41,4 @@ export default function App() {
     
   );
 }
+export default App;
