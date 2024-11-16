@@ -3,31 +3,32 @@
 @tailwind utilities;
 
 @layer base {
-    :root, [theme = default] {
-        --buttons: #60a5fa; /* blue 400 */
-        --hover: #3b82f6; /* blue 500 */
-        --hover2: #2563eb; /* blue 600 */
-        --bg: white;
-        --text: white;
-        --link: #60a5fa; /* blue 400 */;
-        --other: black;
-        --window: #d1d5db; /* grey 300 */
-        --shadow: #6b7280; /* grey 500 */
-        --delete: #ef4444;
-        --delete2: #b91c1c;
-    }
-}
-[theme = dark] {
-    --buttons: #27272a; /* zinc 800 */
-    --hover: #18181b; /* zinc 900 */
-    --hover2: #09090b; /* zinc 950 */
-    --bg: #3f3f46; /* zinc 700 */
+  :root,
+  [theme="default"] {
+    --buttons: #60a5fa; /* blue 400 */
+    --hover: #3b82f6; /* blue 500 */
+    --hover2: #2563eb; /* blue 600 */
+    --bg: white;
     --text: white;
-    --link: white;
-    --link2: #e4e4e7; /* zinc 200 */
+    --link: #60a5fa; /* blue 400 */
     --other: black;
-    --window: #71717a; /* grey 300 */
-    --shadow: #27272a; /* zinc 800 */
+    --window: #d1d5db; /* grey 300 */
+    --shadow: #6b7280; /* grey 500 */
     --delete: #ef4444;
     --delete2: #b91c1c;
+  }
+}
+[theme="dark"] {
+  --buttons: #27272a; /* zinc 800 */
+  --hover: #18181b; /* zinc 900 */
+  --hover2: #09090b; /* zinc 950 */
+  --bg: #3f3f46; /* zinc 700 */
+  --text: white;
+  --link: white;
+  --link2: #e4e4e7; /* zinc 200 */
+  --other: black;
+  --window: #71717a; /* grey 300 */
+  --shadow: #27272a; /* zinc 800 */
+  --delete: #ef4444;
+  --delete2: #b91c1c;
 }
