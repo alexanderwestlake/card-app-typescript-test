@@ -1,4 +1,4 @@
-import {useContext, useState} from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Entry, EntryContextType } from "../@types/context";
 import { EntryContext } from "../utilities/globalContext";
@@ -8,7 +8,7 @@ export default function AllEntries() {
   let navigate = useNavigate();
 
   const [currentTime, setCurrentTime] = useState(new Date());
-  let spam = setInterval(function() {
+  let spam = setInterval(function () {
     let t = new Date();
     setCurrentTime(t);
   }, 1000);
@@ -28,48 +28,48 @@ export default function AllEntries() {
   }
 
   //Adding a live timer because it's fun and I feel like it
-  function dealTime(entry : Entry){
+  function dealTime(entry: Entry) {
     let startTime = new Date(entry.created_at.toString());
     let endTime = new Date(entry.due_at.toString());
-    if(currentTime < startTime){
+    if (currentTime < startTime) {
       //Task hasn't started yet
       let diff = startTime.getTime() - currentTime.getTime();
 
       let hour = Math.floor(diff / 3600000);
-      let min = Math.floor((diff - (hour * 3600000)) / 60000);
-      let sec = Math.floor((diff - ((min * 60000) + (hour * 3600000))) / 1000);
+      let min = Math.floor((diff - hour * 3600000) / 60000);
+      let sec = Math.floor((diff - (min * 60000 + hour * 3600000)) / 1000);
 
-      let display = hour+"h "+min+"m "+sec+"s ";
+      let display = hour + "h " + min + "m " + sec + "s ";
 
       return (
-          <div>
-            <p className="text-right">Starts in:</p>
-            <p className="text-right">{display}</p>
-          </div>
-      )
-    } else if(currentTime > endTime){
+        <div>
+          <p className="text-right">Starts in:</p>
+          <p className="text-right">{display}</p>
+        </div>
+      );
+    } else if (currentTime > endTime) {
       //Task overdue
       return (
-          <div>
-            <p>Overdue!</p>
-          </div>
-      )
+        <div>
+          <p>Overdue!</p>
+        </div>
+      );
     } else {
       //Task is in progress (hopefully!)
       let diff = endTime.getTime() - currentTime.getTime();
 
       let hour = Math.floor(diff / 3600000);
-      let min = Math.floor((diff - (hour * 3600000)) / 60000);
-      let sec = Math.floor((diff - ((min * 60000) + (hour * 3600000))) / 1000);
+      let min = Math.floor((diff - hour * 3600000) / 60000);
+      let sec = Math.floor((diff - (min * 60000 + hour * 3600000)) / 1000);
 
-      let display = hour+"h "+min+"m "+sec+"s ";
+      let display = hour + "h " + min + "m " + sec + "s ";
 
       return (
-          <div>
-            <p className="text-right">Time left:</p>
-            <p className="text-right">{display}</p>
-          </div>
-      )
+        <div>
+          <p className="text-right">Time left:</p>
+          <p className="text-right">{display}</p>
+        </div>
+      );
     }
   }
   return (
@@ -85,7 +85,7 @@ export default function AllEntries() {
               <div className="flex">
                 <h1 className="truncate text-left font-bold text-sm md:text-lg">{entry.title}</h1>
                 <div className="ml-auto font-bold text-sm md:text-lg">{dealTime(entry)}</div>
-            </div>
+              </div>
             </div>
 
             <p className="truncate text-center text-lg font-light md:mt-2 md:mb-4 mt-1 mb-3">{entry.description}</p>
@@ -109,20 +109,20 @@ export default function AllEntries() {
                 </button>
               </div>
               <div className="flex justify-center">
-              <div className="grid ">
-                <div className="mb-2 text-center">
-                  <p>Start date:</p>
-                  <time className="mx-2 text-sm md:text-lg">
-                    {new Date(entry.created_at.toString()).toLocaleDateString()}
-                  </time>
+                <div className="grid ">
+                  <div className="mb-2 text-center">
+                    <p>Start date:</p>
+                    <time className="mx-2 text-sm md:text-lg">
+                      {new Date(entry.created_at.toString()).toLocaleDateString()}
+                    </time>
+                  </div>
+                  <div className="text-center">
+                    <p>Due date:</p>
+                    <time className="mx-2 text-sm md:text-lg">
+                      {new Date(entry.due_at.toString()).toLocaleDateString()}
+                    </time>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <p>Due date:</p>
-                  <time className="mx-2 text-sm md:text-lg">
-                    {new Date(entry.due_at.toString()).toLocaleDateString()}
-                 </time>
-              </div>
-              </div>
               </div>
             </section>
           </div>
