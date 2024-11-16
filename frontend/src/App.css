@@ -14,8 +14,8 @@
     --other: black;
     --window: #d1d5db; /* grey 300 */
     --shadow: #6b7280; /* grey 500 */
-    --delete: #ef4444;
-    --delete2: #b91c1c;
+    --delete: #ef4444; /* red 500 */
+    --delete2: #b91c1c; /* red 700 */
   }
 }
 [theme="dark"] {
@@ -25,10 +25,10 @@
   --bg: #3f3f46; /* zinc 700 */
   --text: white;
   --link: white;
-  --link2: #e4e4e7; /* zinc 200 */
+  --link2: #9ca3af; /* zinc 400 */
   --other: black;
   --window: #71717a; /* grey 300 */
   --shadow: #27272a; /* zinc 800 */
-  --delete: #ef4444;
-  --delete2: #b91c1c;
+  --delete: #18181b; /* zinc 900 */
+  --delete2: #09090b; /* zinc 950 */
 }

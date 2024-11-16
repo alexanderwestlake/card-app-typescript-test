@@ -5,21 +5,32 @@ import AllEntries from "./routes/AllEntries";
 import EditEntry from "./routes/EditEntry";
 import NewEntry from "./routes/NewEntry";
 import { EntryProvider } from "./utilities/globalContext";
+import Cookies from "universal-cookie";
 
 function App() {
-  const [theme, setTheme] = useState("default");
+  //Cookie shenanigans to allow for theme persistence
+  let cookies = new Cookies();
+  document.documentElement.setAttribute("theme", cookies.get("theme"));
+  let themeLabelInitValue = "default";
+  if(cookies.get("theme") !== undefined) themeLabelInitValue = cookies.get("theme")
+  const [theme, setTheme] = useState(themeLabelInitValue);
+
+  //Function to toggle theme and set cookie
   function toggleTheme() {
     if (theme == "default") {
       setTheme("dark");
-    } else setTheme("default");
+      cookies.set("theme", "dark", {path: "/", sameSite: "lax", maxAge: 31557600})
+      document.documentElement.setAttribute("theme", cookies.get("theme"));
+    } else {
+      setTheme("default");
+      cookies.set("theme", "default", {path: "/", sameSite: "lax", maxAge: 31557600})
+      document.documentElement.setAttribute("theme", cookies.get("theme"));
+    }
   }
 
-  useEffect(() => {
-    document.documentElement.setAttribute("theme", theme);
-  }, [theme]);
 
   return (
-    <section className="bg-bg h-screen">
+    <section className="bg-bg min-h-screen">
       <Router>
         <EntryProvider>
           <NavBar theme={theme} setTheme={toggleTheme}></NavBar>
